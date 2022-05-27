@@ -46,6 +46,7 @@ class AndroidStringXmlGenerator {
                                 androidValue.value
                                     .escapeApostrophes(escapeApostrophes)
                                     .escapeLineBreaks()
+                                    .escapeQuotes()
                                     .wrapInCData()
                             )
                             append("</string>\n")
@@ -59,6 +60,7 @@ class AndroidStringXmlGenerator {
                                     value
                                         .escapeApostrophes(escapeApostrophes)
                                         .escapeLineBreaks()
+                                        .escapeQuotes()
                                         .wrapInCData()
                                 )
                                 append("</item>\n")
@@ -74,6 +76,7 @@ class AndroidStringXmlGenerator {
                                     value
                                         .escapeApostrophes(escapeApostrophes)
                                         .escapeLineBreaks()
+                                        .escapeQuotes()
                                         .wrapInCData()
                                 )
                                 append("</item>\n")
@@ -103,6 +106,8 @@ class AndroidStringXmlGenerator {
     }
 
     private fun String.escapeLineBreaks(): String = this.replace("\n", "\\n")
+    
+    private fun String.escapeQuotes(): String = this.replace("\"", "\\\"")
 
     private fun String.wrapInCData(): String = "<![CDATA[$this]]>"
 }
